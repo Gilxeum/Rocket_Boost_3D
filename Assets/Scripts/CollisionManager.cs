@@ -32,10 +32,10 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log("LaunchPad collision");
                 break;
             case "LandingPad":
-                ManageCollision(landingAudioClip);
+                ManageCollision(landingAudioClip,landingParticleSystem);
                 break;
             case "Explosion":
-                ManageCollision(explosionAudioClip);
+                ManageCollision(explosionAudioClip,explosionParticleSystem);
                 break;
             default:
                 break;
@@ -47,11 +47,12 @@ public class CollisionManager : MonoBehaviour
     /// Playing the specifies audio of what kind of things collides 
     /// </summary>
     /// <param name="audioClip"></param>
-    private void ManageCollision(AudioClip audioClip)
+    private void ManageCollision(AudioClip audioClip,ParticleSystem particleSystem)
     {
         isControlable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip);
+        particleSystem.Play();
         GetComponent<PlayerMovement>().enabled = false;
     }
 }
