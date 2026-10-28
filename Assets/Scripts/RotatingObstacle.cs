@@ -8,7 +8,7 @@ public class RotatingObstacle : MonoBehaviour
 
     void Start()
     { 
-            transform.DOLocalRotate(new Vector3(0,360,0), duration, RotateMode.FastBeyond360)
+            transform.DOLocalRotate(new Vector3(0,0,360), duration, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear)
                 .SetLoops(-1, LoopType.Restart);
         
