@@ -2471,11 +2471,34 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1879468099}
   m_SourcePrefab: {fileID: 100100000, guid: 4c4582e1ea08b314aa3abafba0c1fbcc, type: 3}
+--- !u!1 &1571727215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7103922182226552791, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+  m_PrefabInstance: {fileID: 2995868046535480667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1571727216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1526753948373818192, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
   m_PrefabInstance: {fileID: 2995868046535480667}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1571727223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571727215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fedeff1de353345987d6085a722079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
+  currentAmmo: 10
+  maxAmmo: 10
+  infiniteAmmo: 0
+  bulletSpeed: 20
+  bulletRate: 0.25
+  bulletDamage: 1
 --- !u!1 &1580565901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c4582e1ea08b314aa3abafba0c1fbcc, type: 3}
@@ -3679,6 +3702,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -488622372468654620, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: objectPrefab
+      value: 
+      objectReference: {fileID: 3114805911334928358, guid: 6eb849564eb0f8141be9ca6daa1c6bb7, type: 3}
+    - target: {fileID: 3154715234874093, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.492
+      objectReference: {fileID: 0}
     - target: {fileID: 1526753948373818192, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3723,10 +3754,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 6cfdd502-cc8f-4cb4-8db8-8cc931118791
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Id
+      value: b9ad4fca-3ff0-4e77-9309-d43ca282fe66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326534944662251861, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      propertyPath: shoot.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7103922182226552791, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1571727223}
   m_SourcePrefab: {fileID: 100100000, guid: 3d0e85608a58a8b48a2abc1517bf9b6b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
