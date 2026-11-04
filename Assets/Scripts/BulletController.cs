@@ -21,6 +21,16 @@ public class BulletController : MonoBehaviour
     {
         DeactivateBullet();
 
+        switch(other.tag)
+        {
+            case "Barrel":
+               other.GetComponent<BarrelController>().DestroyObject();
+
+            break;
+            default:
+            break; 
+        }
+
         //TODO Particles
         //TODO if bullets hits an enemy, reduce enemy health
         //TODO : if bullet hits player, reduce player healtch

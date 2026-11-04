@@ -62,4 +62,9 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public void AddBullets(int bullets)
+    {
+        currentAmmo += bullets;
+    }
+
 }

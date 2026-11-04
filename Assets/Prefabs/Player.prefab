@@ -4642,6 +4642,7 @@ GameObject:
   - component: {fileID: 6947602543298792423}
   - component: {fileID: 2028737677691745851}
   - component: {fileID: -488622372468654620}
+  - component: {fileID: 4885727628031633002}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4815,6 +4816,16 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
     m_Priority: 0
+  shoot:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8e7d40f2-fa72-4ebf-a2bd-306a39402c2a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+    m_Priority: 0
   moveForce: 30
   rotationForce: 2.5
   thrustParticleSystem: {fileID: 4332050140315750311}
@@ -4946,6 +4957,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150924ec341df524d9e7b6b80abe3ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  objectPrefab: {fileID: 0}
+  poolSize: 10
+--- !u!114 &4885727628031633002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7103922182226552791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef8ca3f9475b0b4c9eb7fc142096e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  maxHealth: 100
+  name: Player
 --- !u!1 &7593197970062810001
 GameObject:
   m_ObjectHideFlags: 0

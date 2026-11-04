@@ -7,6 +7,9 @@ TagManager:
   - LaunchPad
   - LandingPad
   - Explosion
+  - Barrel
+  - HealingBox
+  - AmmoBox
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,29 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] private ParticleSystem explosionParticleSystem;
     [SerializeField] private ParticleSystem landingParticleSystem;
 
+    private HealthManager healthManager;
+    private PlayerShooting playerShooting;
+
+    
+    private Renderer[] characterRenderers;
+
 
 
 
     AudioSource audioSource;
 
     bool isControlable = true;
+
+    bool canTakeDamage = true;
+
+    bool isVisible = true;
+
+    private void Awake()
+    {
+        healthManager = GetComponent<HealthManager>();
+        characterRenderers = GetComponentsInChildren<Renderer>();
+        playerShooting = GetComponent<PlayerShooting>();
+    }
 
     void Start()
     {
@@ -36,7 +54,18 @@ public class CollisionManager : MonoBehaviour
                 ManageCollision(landingAudioClip,landingParticleSystem);
                 break;
             case "Explosion":
-                ManageCollision(explosionAudioClip,explosionParticleSystem);
+                if (canTakeDamage)
+                    TakeDamage();
+                break;
+            case "HealingBox":
+                healthManager.GetHeal(20);
+                Debug.Log("Healed!");
+                Destroy(collision.gameObject);
+                break;
+            case "AmmoBox":
+                playerShooting.AddBullets(2);
+                Debug.Log("2 more bullets!");
+                Destroy(collision.gameObject);
                 break;
             default:
                 break;
@@ -55,5 +84,49 @@ public class CollisionManager : MonoBehaviour
         audioSource.PlayOneShot(audioClip);
         particleSystem.Play();
         GetComponent<PlayerMovement>().enabled = false;
+        
+    }
+
+    private void TakeDamage() 
+    {
+        healthManager.TakeDamage(20);
+        if (healthManager.currentHealth != 0)
+        {
+            InvokeRepeating(nameof(ToggleVisibility), 0, 0.1f);
+            ActivateInvincibility();
+            
+        }
+        else
+        {
+            ManageCollision(explosionAudioClip, explosionParticleSystem);
+        }
+    }
+
+    private void ActivateInvincibility()
+    {
+        canTakeDamage = false;
+
+        Invoke(nameof(DeactivateInvincibility), 2f);
+    }
+
+    private void DeactivateInvincibility()
+    {
+        CancelInvoke(nameof(ToggleVisibility));
+        canTakeDamage = true;
+        isVisible = true;
+        foreach (Renderer rend in characterRenderers)
+        {
+            rend.enabled = isVisible;
+        }
+    }
+
+    private void ToggleVisibility()
+    {
+        
+        isVisible = !isVisible;
+        foreach (Renderer rend in characterRenderers)
+        {
+            rend.enabled = isVisible;
+        }
     }
 }
