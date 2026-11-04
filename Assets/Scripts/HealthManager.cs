@@ -6,7 +6,9 @@ public class HealthManager : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth;
-    
+    [SerializeField]
+    private ParticleSystem deathParticle;
+
     public int currentHealth { get; private set; }
 
     [SerializeField]
@@ -45,8 +47,15 @@ public class HealthManager : MonoBehaviour
     private void Die()
     { 
         Debug.Log(name + " has died.");
-        if(name != "Player")
+        if (name != "Player")
+        {
+            if (deathParticle != null)
+            {
+                deathParticle.transform.SetParent(null);
+                deathParticle.Play();
+            }
             Destroy(gameObject);
+        }
     }
 
 }

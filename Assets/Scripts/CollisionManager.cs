@@ -57,6 +57,10 @@ public class CollisionManager : MonoBehaviour
                 if (canTakeDamage)
                     TakeDamage();
                 break;
+            case "Enemy":
+                if (canTakeDamage)
+                    TakeDamage();
+                break;
             case "HealingBox":
                 healthManager.GetHeal(20);
                 Debug.Log("Healed!");
@@ -89,7 +93,7 @@ public class CollisionManager : MonoBehaviour
 
     private void TakeDamage() 
     {
-        healthManager.TakeDamage(20);
+        healthManager.TakeDamage(30);
         if (healthManager.currentHealth != 0)
         {
             InvokeRepeating(nameof(ToggleVisibility), 0, 0.1f);

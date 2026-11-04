@@ -25,14 +25,15 @@ public class BulletController : MonoBehaviour
         {
             case "Barrel":
                other.GetComponent<BarrelController>().DestroyObject();
-
             break;
+            case "Enemy":
+                other.GetComponent<HealthManager>().TakeDamage(20);
+                Debug.Log("Enemy hit! 20 damage dealt.");
+                break;
             default:
             break; 
         }
 
-        //TODO Particles
-        //TODO if bullets hits an enemy, reduce enemy health
-        //TODO : if bullet hits player, reduce player healtch
+        
     }
 }
