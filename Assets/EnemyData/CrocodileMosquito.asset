@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c36d8277eb8c24dafc8905bb621b7a, type: 3}
   m_Name: CrocodileMosquito
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: 
-  enemyPrefab: {fileID: 0}
-  health: 0
-  damage: 0
+  enemyName: CrocodileMosquito
+  enemyPrefab: {fileID: 1039668780847461915, guid: fb9f44026c6cb46d985f0e74b3ac73fe, type: 3}
+  health: 20
+  damage: 20
