@@ -17,11 +17,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem rightRotationParticleSystem;
 
     [Header("Audio Settings")]
+
+    [SerializeField] private AudioSource movementAudioSource;
+
     [SerializeField] private AudioClip thrustAudioClip;
 
 
     Rigidbody rb;
-    AudioSource audioSource;
+    
     PlayerShooting playerShooting ;
 
     private void OnEnable()
@@ -34,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         playerShooting = GetComponent<PlayerShooting>();
     }
 
@@ -127,9 +129,9 @@ public class PlayerMovement : MonoBehaviour
         {
             thrustParticleSystem.Play();
         }
-        if(!audioSource.isPlaying)
+        if(!movementAudioSource.isPlaying)
         {
-            audioSource.PlayOneShot(thrustAudioClip);
+            movementAudioSource.PlayOneShot(thrustAudioClip);
         }
     }
 
@@ -140,6 +142,6 @@ public class PlayerMovement : MonoBehaviour
     private void StopThrusting()
     {
         thrustParticleSystem.Stop();
-        audioSource.Stop();
+        movementAudioSource.Stop();
     }
 }

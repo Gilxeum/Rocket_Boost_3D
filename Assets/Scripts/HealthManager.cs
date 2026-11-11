@@ -9,6 +9,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField]
     private ParticleSystem deathParticle;
 
+
     public int currentHealth { get; private set; }
 
     [SerializeField]

@@ -1,17 +1,26 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CollisionManager : MonoBehaviour
 {
     [Header("Audio Settings")]
     [SerializeField] private AudioClip explosionAudioClip;
     [SerializeField] private AudioClip landingAudioClip;
+    [SerializeField] private AudioClip collisionAudioClip;
 
     [Header("Particle Systems")]
 
     [SerializeField] private ParticleSystem explosionParticleSystem;
     [SerializeField] private ParticleSystem landingParticleSystem;
+
+    [SerializeField]
+    private Image characterPortrait;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource effectsAudioSource;
+    [SerializeField] private AudioSource movementAudioSource;
 
     private HealthManager healthManager;
     private PlayerShooting playerShooting;
@@ -22,7 +31,7 @@ public class CollisionManager : MonoBehaviour
 
 
 
-    AudioSource audioSource;
+    
 
     bool isControlable = true;
 
@@ -39,7 +48,7 @@ public class CollisionManager : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        movementAudioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,8 +93,8 @@ public class CollisionManager : MonoBehaviour
     private void ManageCollision(AudioClip audioClip,ParticleSystem particleSystem)
     {
         isControlable = false;
-        audioSource.Stop();
-        audioSource.PlayOneShot(audioClip);
+        movementAudioSource.Stop();
+        movementAudioSource.PlayOneShot(audioClip);
         particleSystem.Play();
         GetComponent<PlayerMovement>().enabled = false;
         
@@ -98,7 +107,9 @@ public class CollisionManager : MonoBehaviour
         {
             InvokeRepeating(nameof(ToggleVisibility), 0, 0.1f);
             ActivateInvincibility();
-            
+            effectsAudioSource.Stop();
+            effectsAudioSource.PlayOneShot(collisionAudioClip);
+
         }
         else
         {
@@ -109,7 +120,7 @@ public class CollisionManager : MonoBehaviour
     private void ActivateInvincibility()
     {
         canTakeDamage = false;
-
+        characterPortrait.sprite = Resources.Load<Sprite>("Art/CharacterPortraits/Surprised");
         Invoke(nameof(DeactivateInvincibility), 2f);
     }
 
@@ -122,6 +133,11 @@ public class CollisionManager : MonoBehaviour
         {
             rend.enabled = isVisible;
         }
+        if(healthManager.currentHealth <= 50)
+            characterPortrait.sprite = Resources.Load<Sprite>("Art/CharacterPortraits/Fluster");
+        else
+            characterPortrait.sprite = Resources.Load<Sprite>("Art/CharacterPortraits/Happy");
+
     }
 
     private void ToggleVisibility()

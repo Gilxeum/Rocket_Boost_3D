@@ -5,21 +5,19 @@ public class HealthbarController : MonoBehaviour
 {
     [SerializeField]
     private GameObject character;
+
+
     private HealthManager healthManager;
     private int maxHealth;
     private Slider healthSlider;
     private Image healthFill;
 
+
+
     private void Awake()
     {
-        if(character == null)
-        {
-            healthManager = GetComponentInParent<HealthManager>();
-        }
-        else
-        {
-            healthManager = character.GetComponent<HealthManager>();
-        }
+       
+        healthManager = character.GetComponent<HealthManager>();
         healthSlider = GetComponent<Slider>();
         healthFill = healthSlider.fillRect.GetComponent<Image>();
     }
